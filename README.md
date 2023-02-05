@@ -31,7 +31,8 @@ python3 app.py
 
 ## ERD Chart
 <div align="center">
+[only_pets.pdf](https://github.com/lougoncharenko/only_pets/files/10613775/only_pets.pdf)
 
-<img width="911" alt="ERD chart" src="only_pets.pdf">
+
 
 </div>
