@@ -27,3 +27,11 @@ python3 app.py
 - [python](https://www.python.org)
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 - [SqlAlchemy](https://www.sqlalchemy.org)
+
+
+## ERD Chart
+<div align="center">
+
+<img width="911" alt="ERD chart" src="only_pets.pdf">
+
+</div>
