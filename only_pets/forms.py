@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import FloatField, StringField, SelectField, SubmitField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length
-from grocery_app.models import *
+from only_pets.models import *
 
 class GroceryStoreForm(FlaskForm):
     """Form for adding/updating a GroceryStore."""
@@ -36,5 +36,4 @@ class GroceryItemForm(FlaskForm):
         DataRequired() 
      ]
     )
-    store = QuerySelectField('Store', query_factory=lambda: GroceryStore.query, allow_blank=False)
     submit = SubmitField('Submit')
