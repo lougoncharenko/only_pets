@@ -1,5 +1,5 @@
-from only_pets.extensions import app, db
-from only_pets.routes import main
+from grocery_app.extensions import app, db
+from grocery_app.routes import main
 
 app.register_blueprint(main)
 

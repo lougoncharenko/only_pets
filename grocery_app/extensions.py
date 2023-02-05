@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from only_pets.config import Config
+from grocery_app.config import Config
 import os
 
 app = Flask(__name__)
