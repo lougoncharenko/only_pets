@@ -8,6 +8,8 @@ from only_pets.utils import FormEnum
 
 class User(db.Model):
     """User model."""
+    id = db.Column(db.Integer, primary_key=True)
+    
     pass
 
 class Account(db.Model):
