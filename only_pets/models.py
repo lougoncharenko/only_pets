@@ -40,14 +40,14 @@ class Posts(db.Model):
     created_by = db.relationship('User')
 
 
-# class Comment(db.Model):
-#     """Comment model."""
-#     id = db.Column(db.Integer, primary_key=True)
-#     text = db.Column(db.String(250), nullable=False)
-#     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-#     created_by = db.relationship('User')
-#     def __str__(self):
-#         return f'{self.text}'
+class Comment(db.Model):
+    """Comment model."""
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(250), nullable=False)
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    created_by = db.relationship('User')
+    def __str__(self):
+        return f'{self.text}'
 
-#     def __repr__(self):
-#         return f'{self.text}'
+    def __repr__(self):
+        return f'{self.text}'
