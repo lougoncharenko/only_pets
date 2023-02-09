@@ -1,6 +1,8 @@
+from wsgiref.validate import validator
 from xml.dom import ValidationErr
 from flask_wtf import FlaskForm
-from wtforms import FloatField, StringField, SelectField, SubmitField, PasswordField
+from pyparsing import Regex
+from wtforms import DateField, StringField, FileField, SubmitField, PasswordField, TextAreaField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length
 from only_pets.models import *
@@ -22,57 +24,54 @@ class UserForm(FlaskForm):
         DataRequired(), 
         Length(min=3, max=80, message="Your username needs to be betweeen 3 and 80 chars")
     ])
-    password = StringField('Password', 
+    password = PasswordField('Password', 
     validators=[
         DataRequired(), 
         Length(min=3, max=60, message="Your password needs to be betweeen 3 and 80 chars")
     ])
     submit = SubmitField('Submit')
 
-
 class AccountForm(FlaskForm):
     """Form for adding/updating an account."""
-    pass
+    user_name =  StringField('Username', 
+    validators=[
+        DataRequired(), 
+        Length(min=3, max=80, message="Your username needs to be betweeen 3 and 80 chars")
+    ])
+    biography = TextAreaField("Biography",
+    validators=[
+    DataRequired(), 
+        Length(min=3, max=250, message="Your username needs to be betweeen 3 and 250 chars")
+    ])
+    photo_url = StringField('Photo',
+    validators=[
+    DataRequired() 
+    ])
+    submit = SubmitField('Submit')
 
 class PostForm(FlaskForm):
     """Form for adding/updating a post."""
-    pass
+    date_posted = DateField("Date", format='%Y-%m-%d',
+    validators= [
+        DataRequired(), 
+    ])
+    caption = TextAreaField("Biography",
+    validators=[
+    DataRequired(), 
+        Length(min=3, max=250, message="Your username needs to be betweeen 3 and 250 chars")
+    ])
+    photo_url = StringField('Photo',
+    validators=[
+    DataRequired() 
+    ])
+    submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
     """Form for adding/updating a comment."""
-    pass
-
-
-# class GroceryStoreForm(FlaskForm):
-#     """Form for adding/updating a GroceryStore."""
-#     title = StringField('Grocery Store Name', 
-#     validators=[
-#         DataRequired(), 
-#         Length(min=3, max=80, message="Your title needs to be betweeen 3 and 80 chars")
-#     ])
-#     address = StringField('Address', 
-#     validators=[
-#         DataRequired(), 
-#         Length(min=3, max=80, message="Your address needs to be betweeen 3 and 80 chars")
-#     ])
-#     submit = SubmitField('Submit')
-
-# class GroceryItemForm(FlaskForm):
-#     """Form for adding/updating a GroceryItem."""
-#     name = StringField('Grocery Item', 
-#     validators=[
-#         DataRequired(), 
-#         Length(min=3, max=80, message="Your Grocery item needs to be betweeen 3 and 80 chars")
-#     ])
-#     price = FloatField ("Price    ",
-#     validators=[
-#         DataRequired()]
-#     )
-#     category = SelectField('Category',
-#     )
-#     photo_url = StringField('Photo',
-#      validators=[
-#         DataRequired() 
-#      ]
-#     )
-#     submit = SubmitField('Submit')
+    comment = TextAreaField("Comment",
+    validators=[
+    DataRequired(), 
+        Length(min=3, max=250, message="Your username needs to be betweeen 3 and 250 chars")
+    ])
+    submit = SubmitField('Submit')
+   
