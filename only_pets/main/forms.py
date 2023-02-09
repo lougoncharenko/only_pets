@@ -1,5 +1,6 @@
+from xml.dom import ValidationErr
 from flask_wtf import FlaskForm
-from wtforms import FloatField, StringField, SelectField, SubmitField
+from wtforms import FloatField, StringField, SelectField, SubmitField, PasswordField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Length
 from only_pets.models import *

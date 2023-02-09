@@ -12,7 +12,6 @@ main = Blueprint("main", __name__)
 
 @main.route('/')
 def homepage():
-    
     return render_template('home.html')
 
 # @main.route('/create_user', methods=['GET', 'POST'])
