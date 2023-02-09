@@ -1,53 +1,60 @@
+"""Create database models to represent tables."""
+from only_pets import db
+from sqlalchemy.orm import backref
+from flask_login import UserMixin
 from sqlalchemy_utils import URLType
-from only_pets.extensions import db
-from only_pets.utils import FormEnum
+from datetime import datetime
+
 
 ##########################################
 #           Models                      #
 ##########################################
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """User model."""
     id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(80), nullable=False)
-    biography = db.Column(db.String(80), nullable=False)
-    def __str__(self):
-        return f'{self.email}'
+    username = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String(120), unique=True, nullable=False)
+    # users_account = db.relationship('Account', secondary='user_account', 
+    # back_populates='users')
 
-    def __repr__(self):
-        return f'{self.email}'
-
-class Account(db.Model):
+class Account(UserMixin, db.Model):
     """Account model."""
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(80), nullable=False)
-    password = db.Column(db.String(80), nullable=False)
-    posts = db.relationship('Post', back_populates='account')
+    username = db.Column(db.String(80), nullable=False)
+    biography = db.Column(db.String(250), nullable=False)
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
+#     users= db.relationship('User', secondary='user_account', 
+#     back_populates='users_account')
 
-class Post(db.Model):
-    """Post model."""
-    id = db.Column(db.Integer, primary_key=True)
-    photo_url = db.Column(URLType)
-    caption = db.Column(db.String(250), nullable=False)
-    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    created_by = db.relationship('User')
-    def __str__(self):
-        return f'{self.caption}'
+# user_account = db.Table('user_account',
+# db.column('user_id', db.Integer, db.ForeignKey('user_id')),
+# db.column('account_id', db.Integer, db.ForeignKey('account_id'))
+# )
 
-    def __repr__(self):
-        return f'{self.caption}'
+# class Post(db.Model):
+#     """Post model."""
+#     id = db.Column(db.Integer, primary_key=True)
+#     photo_url = db.Column(URLType)
+#     caption = db.Column(db.String(250), nullable=False)
+#     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     created_by = db.relationship('User')
+#     def __str__(self):
+#         return f'{self.caption}'
+
+#     def __repr__(self):
+#         return f'{self.caption}'
 
 
-class Comment(db.Model):
-    """Comment model."""
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(250), nullable=False)
-    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    created_by = db.relationship('User')
-    def __str__(self):
-        return f'{self.text}'
+# class Comment(db.Model):
+#     """Comment model."""
+#     id = db.Column(db.Integer, primary_key=True)
+#     text = db.Column(db.String(250), nullable=False)
+#     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     created_by = db.relationship('User')
+#     def __str__(self):
+#         return f'{self.text}'
 
-    def __repr__(self):
-        return f'{self.text}'
+#     def __repr__(self):
+#         return f'{self.text}'
