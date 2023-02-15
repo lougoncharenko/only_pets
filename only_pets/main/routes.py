@@ -49,12 +49,24 @@ def account_detail(account_id):
         return redirect(url_for('main.account_detail', account_id=account.id))
     account = AccountForm.query.get(account_id)
     return render_template('account_detail.html', account=account, form=form)
-    pass 
+    
 
 @main.route('/create_post', methods=['GET', 'POST'])
 @login_required
 def create_post():
-    pass
+    form = PostForm()
+    if form.validate_on_submit():
+        new_post = PostForm(
+            date_posted = form.date_posted.data,
+            caption = form.caption.data,
+            photo_url = form.photo_url.data,
+        )
+        db.session.add(new_post)
+        db.session.commit()
+        flash('New Post Created!')
+        return redirect(url_for('main.post_detail', post_id=new_post.id))
+    return render_template('create_post.html', form=form)
+    
 
 # @main.route('/create_comment', methods=['GET', 'POST'])
 #@login_required
