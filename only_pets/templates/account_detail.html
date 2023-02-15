@@ -7,7 +7,7 @@
 
 <p><strong>Created by: </strong>{{ account.created_by.username }}</p>
 
-<!-- <form method="POST" action="{{ url_for('main.add_post_to_account', account_id=account.id) }}">
+<!-- <form method="POST" action="{{ url_for('main.add_comment', account_id=account.id) }}">
     {{ form.csrf_token }}
     <button type="submit">Add a post</button> -->
 
@@ -17,7 +17,7 @@
 <form method="POST" action="{{ url_for('main.account_detail', account_id=account.id) }}">
     {{ form.csrf_token }}
     <fieldset>
-        <legend>Please update your item</legend>
+        <legend>Please update your Post</legend>
         {{ form.username.label }}
         {{ form.username(placeholder="Username") }}
 
