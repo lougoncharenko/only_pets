@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Account - {{ account.username }}</h1>
+
+<p><img src="{{ account.photo_url }}" width="250px" height="250px"></p>
+
+<p><strong>Created by: </strong>{{ account.created_by.username }}</p>
+
+<!-- <form method="POST" action="{{ url_for('main.add_post_to_account', account_id=account.id) }}">
+    {{ form.csrf_token }}
+    <button type="submit">Add a post</button> -->
+
+
+<h2>Edit Account</h2>
+
+<form method="POST" action="{{ url_for('main.account_detail', account_id=account.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please update your item</legend>
+        {% include "item_form.html" %}
+    </fieldset>
+   
+</form>
+
+{% endblock %}
