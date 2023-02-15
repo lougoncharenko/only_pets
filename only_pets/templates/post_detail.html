@@ -8,9 +8,11 @@
 <p>{{ post.caption }}</p>
 <p><strong>Created by: </strong>{{ post.created_by.username }}</p>
 
-<!-- <form method="POST" action="{{ url_for('main.add_post_to_account', account_id=account.id) }}">
+<!-- TODO add an includes to list all the comments -->
+
+<form method="POST" action="{{ url_for('main.add_comment', post_id=postt.id) }}">
     {{ form.csrf_token }}
-    <button type="submit">Add a post</button> -->
+    <button type="submit">Add a Comment</button>
 
 
 <h2>Edit Post</h2>
