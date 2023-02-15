@@ -4,6 +4,7 @@ from flask_login import login_required
 from only_pets.models import *
 from only_pets.main.forms import *
 from only_pets.extensions import app, db
+import flask_login
 
 main = Blueprint("main", __name__)
 
@@ -27,6 +28,7 @@ def create_account():
             username = form.username.data,
             biography = form.biography.data,
             photo_url = form.photo_url.data,
+            created_by = flask_login.current_user
         )
         db.session.add(new_account)
         db.session.commit()
@@ -60,6 +62,7 @@ def create_post():
             date_posted = form.date_posted.data,
             caption = form.caption.data,
             photo_url = form.photo_url.data,
+            created_by = flask_login.current_user
         )
         db.session.add(new_post)
         db.session.commit()
@@ -80,14 +83,29 @@ def post_detail(post_id):
         flash ('Post successfully editted.')
         return redirect(url_for('main.post_detail', post_id=post.id))
     post = PostForm.query.get(post_id)
-    return render_template('account_detail.html', post=post, form=form)
+    return render_template('post_detail.html', post=post, form=form)
     pass
     
 
-# @main.route('/create_comment', methods=['GET', 'POST'])
-#@login_required
-# def create_comment():
-#     pass
+@main.route('/add_comment/<post_id>', methods=['POST'])
+@login_required
+def add_comment(post_id):
+    post = PostForm.query.get(post_id)
+    form = CommentForm(obj=post)
+    if form.validate_on_submit():
+        new_comment = CommentForm (
+            comment = form.comment.data,
+            created_by = flask_login.current_user
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        flash('Comment Added.')
+        return redirect(url_for('main.comments_list', ))
+    return render_template('create_comment.html', form=form)       
+
+    
+   
+    pass
 
 # @main.route('/user/<user_id>', methods=['GET', 'POST'])
 #@login_required
