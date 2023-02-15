@@ -38,6 +38,8 @@ class Posts(db.Model):
     photo_url = db.Column(URLType)
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
+    all_comments = db.relationship('Comment', secondary="post_comments", back_populates="on_posts")
+
 
 
 class Comment(db.Model):
@@ -46,6 +48,7 @@ class Comment(db.Model):
     text = db.Column(db.String(250), nullable=False)
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_by = db.relationship('User')
+    on_posts = db.relationship('Posts', secondary="post_comments", back_populates="all_comments")
     def __str__(self):
         return f'{self.text}'
 
@@ -53,7 +56,7 @@ class Comment(db.Model):
         return f'{self.text}'
 
 # Not sure if i did this correctly--- check with Braus
-post_comments_table = db.Table('comments_list',
+post_comments_table = db.Table('post_comments',
 db.Column('posts_id', db.Integer, db.ForeignKey('posts.id'), primary_key=True),
 db.Column('comment_id', db.Integer, db.ForeignKey('comment.id'), primary_key=True)
 )
