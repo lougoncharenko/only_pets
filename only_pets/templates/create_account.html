@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>New Account</h1>
+
+<form method="POST" action="{{ url_for('main.create_account') }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please enter your information:</legend>
+        
+        {{ form.username.label }}
+        {{ form.username(placeholder="Username") }}
+
+        {{ form.biography.label }}
+        {{ form.biography(placeholder="Type your biography here:") }}
+
+        {{ form.photo_url.label }}
+        {{ form.photo_url }}
+        
+       {{ form.submit }}
+
+    </fieldset>
+</form>
+
+
+{% endblock %}
