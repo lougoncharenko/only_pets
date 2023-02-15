@@ -51,3 +51,9 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f'{self.text}'
+
+# Not sure if i did this correctly--- check with Braus
+post_comments_table = db.Table('comments_list',
+db.Column('posts_id', db.Integer, db.ForeignKey('posts.id'), primary_key=True),
+db.Column('comment_id', db.Integer, db.ForeignKey('comment.id'), primary_key=True)
+)
