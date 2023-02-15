@@ -66,6 +66,22 @@ def create_post():
         flash('New Post Created!')
         return redirect(url_for('main.post_detail', post_id=new_post.id))
     return render_template('create_post.html', form=form)
+
+@main.route('/post/<post_id>', methods=['GET', 'POST'])
+@login_required
+def post_detail(post_id):
+    post = PostForm.query.get(post_id)
+    form = PostForm(obj=post)
+    if form.validate_on_submit():
+        post.date_posted = form.date_posted.data
+        post.caption = form.caption.data
+        post.photo_url = form.photo_url
+        db.session.commit()
+        flash ('Post successfully editted.')
+        return redirect(url_for('main.post_detail', post_id=post.id))
+    post = PostForm.query.get(post_id)
+    return render_template('account_detail.html', post=post, form=form)
+    pass
     
 
 # @main.route('/create_comment', methods=['GET', 'POST'])
@@ -78,12 +94,6 @@ def create_post():
 # def user_detail(user_id):
 #     pass
 
-
-
-# @main.route('/post/<post_id>', methods=['GET', 'POST'])
-#@login_required
-# def post_detail(post_id):
-#     pass
 
 # @main.route('/comment/<comment_id>', methods=['GET', 'POST'])
 #@login_required
