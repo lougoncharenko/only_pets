@@ -33,7 +33,7 @@ class UserForm(FlaskForm):
 
 class AccountForm(FlaskForm):
     """Form for adding/updating an account."""
-    user_name =  StringField('Username', 
+    username =  StringField('Username', 
     validators=[
         DataRequired(), 
         Length(min=3, max=80, message="Your username needs to be betweeen 3 and 80 chars")
