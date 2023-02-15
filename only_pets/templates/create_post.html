@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>New Post</h1>
+
+<form method="POST" action="{{ url_for('main.create_post') }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please enter your information:</legend>
+        
+        {{ form.date_posted.label }}
+        {{ form.date_posted(placeholder="YYYY-MM-DD") }}
+
+        {{ form.caption.label }}
+        {{ form.caption(placeholder="Type your caption here:") }}
+
+        {{ form.photo_url.label }}
+        {{ form.photo_url(placeholder="Enter photo url here:") }}
+      
+        
+       {{ form.submit }}
+
+    </fieldset>
+</form>
+
+
+{% endblock %}
