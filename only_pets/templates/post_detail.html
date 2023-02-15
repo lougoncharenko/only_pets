@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Posted on {{ post.date_posted}}</h1>
+
+<p><img src="{{ post.photo_url }}" width="250px" height="250px"></p>
+
+<p>{{ post.caption }}</p>
+<p><strong>Created by: </strong>{{ post.created_by.username }}</p>
+
+<!-- <form method="POST" action="{{ url_for('main.add_post_to_account', account_id=account.id) }}">
+    {{ form.csrf_token }}
+    <button type="submit">Add a post</button> -->
+
+
+<h2>Edit Post</h2>
+
+<form method="POST" action="{{ url_for('main.post_detail', post_id=post.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please update your item</legend>
+        {{ form.date_posted.label }}
+        {{ form.date_posted(placeholder="YYYY-MM-DD") }}
+
+        {{ form.caption.label }}
+        {{ form.caption(placeholder="Type your caption here:") }}
+
+        {{ form.photo_url.label }}
+        {{ form.photo_url(placeholder="Enter photo url here:") }}
+      
+       {{ form.submit }}
+    </fieldset>
+   
+</form>
+
+{% endblock %}
