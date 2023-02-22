@@ -87,6 +87,7 @@ def post_detail(post_id):
     pass
     
 
+# not 100% sure if this works 
 @main.route('/add_comment/<post_id>', methods=['POST'])
 @login_required
 def add_comment(post_id):
@@ -101,7 +102,8 @@ def add_comment(post_id):
         db.session.commit()
         flash('Comment Added.')
         return redirect(url_for('main.comments_list', ))
-    return render_template('create_comment.html', form=form)       
+    return render_template('create_comment.html', form=form)  
+    pass     
 
     
    

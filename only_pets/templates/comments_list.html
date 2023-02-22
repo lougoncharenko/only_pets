@@ -1,0 +1,11 @@
+<!-- not sure if this is accurate-trying to get all comments from database -->
+
+{% if shopping_list %}
+<ul>
+    {% for comment in post_comments %}
+    <li>
+        <p>{{ comment.comment }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
