@@ -8,7 +8,10 @@
 <p>{{ post.caption }}</p>
 <p><strong>Created by: </strong>{{ post.created_by.username }}</p>
 
-<!-- TODO add an includes to list all the comments -->
+{% for comments in post.all_comments %}
+<p>{{ comments.comment }}</p>
+{% endfor %}
+
 
 <form method="POST" action="{{ url_for('main.add_comment', post_id=postt.id) }}">
     {{ form.csrf_token }}

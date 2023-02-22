@@ -87,11 +87,10 @@ def post_detail(post_id):
     pass
     
 
-# not 100% sure if this works 
 @main.route('/add_comment/<post_id>', methods=['POST'])
 @login_required
 def add_comment(post_id):
-    post = PostForm.query.get(post_id)
+    post = Posts.query.get(post_id)
     form = CommentForm(obj=post)
     if form.validate_on_submit():
         new_comment = CommentForm (
@@ -99,24 +98,8 @@ def add_comment(post_id):
             created_by = flask_login.current_user
         )
         db.session.add(new_comment)
+        post.all_comments.append(new_comment)
         db.session.commit()
         flash('Comment Added.')
-        return redirect(url_for('main.comments_list', ))
+        return redirect(url_for('post_detail.html', post_id=post.id))
     return render_template('create_comment.html', form=form)  
-    pass     
-
-    
-   
-    pass
-
-# @main.route('/user/<user_id>', methods=['GET', 'POST'])
-#@login_required
-# def user_detail(user_id):
-#     pass
-
-
-# @main.route('/comment/<comment_id>', methods=['GET', 'POST'])
-#@login_required
-# def comment_detail(comment_id):
-#     pass
-
