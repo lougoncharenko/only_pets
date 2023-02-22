@@ -4,6 +4,13 @@
 <h2>All Posts</h2>
 
 <!-- TODO query all the posts and display them -->
-
+{% for store in all_posts %}
+<div class="posts">
+    <a href="/post/{{ post_id }}">{{ post.date_posted }}</a> 
+    <img src="{{ post.photo_url }}" alt="{{ post.caption }}" width="200px">
+    <p><strong>{{ post.caption }}</strong></p>
+    <img>
+</div>
+{% endfor %}
 
 {% endblock %}

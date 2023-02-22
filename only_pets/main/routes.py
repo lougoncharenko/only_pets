@@ -14,8 +14,8 @@ main = Blueprint("main", __name__)
 
 @main.route('/')
 def homepage():
-    # all_posts = Posts.query.all()
-    # return render_template('home.html', all_posts=all_posts)
+    all_posts = Posts.query.all()
+    return render_template('home.html', all_posts=all_posts)
     return render_template('home.html')
 
 
