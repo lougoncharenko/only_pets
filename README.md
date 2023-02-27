@@ -7,6 +7,10 @@
 | Goal  | Build a robust full-stack application using python and SqlAlchemy                                                                                            |
 |       |                                                                                                                                                                                                     |
 
+<img width="1088" alt="Screen Shot 2023-02-27 at 4 59 42 PM (2)" src="https://user-images.githubusercontent.com/93098869/221697498-8c60ea35-c85e-4545-a4d8-4e54229bb999.png">
+
+
+
 
 ## Installation and Running App 
 
