@@ -4,11 +4,11 @@ body {
     align-items: center;
     background-color: #eee;
     font-family: 'Open Sans', sans-serif;
+    background-color: aqua;
 }
 
 #content {
     width: 70%;
-    background-color: white;
     padding: 20px;
 }
 
@@ -43,27 +43,14 @@ fieldset input {
 }
 
 input[type=submit] {
-    width: 100px;
+    padding: 10px 20px;
     align-self: flex-end;
 }
 
-div.store {
-    border: 1px solid black;
-    padding: 10px;
-    margin-bottom: 10px;
+li.error {
+    color: red;
 }
 
-div.items {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-div.item-details {
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
+h2 {
     text-align: center;
-    width: 250px;
-    height: 300px;
 }

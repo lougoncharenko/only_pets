@@ -1,16 +1,46 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-<h2>All Posts</h2>
+<h2>Stories</h2>
+<!-- Display all the stories here -->
+<section id="story-container">
+    <section id="stories">
+        {% for story in all_stories%}
+        <div id="story">
+            <a href="/story/{{ story.id }}"> <img id = "story-image" src="{{ story.photo_url }}" alt="{{ story.id }}" width="200px" /></a> 
+        </div>
+        {% endfor %}
+    </section>
+</section>
 
-<!-- TODO query all the posts and display them -->
-{% for store in all_posts %}
-<div class="posts">
-    <a href="/post/{{ post_id }}">{{ post.date_posted }}</a> 
-    <img src="{{ post.photo_url }}" alt="{{ post.caption }}" width="200px">
-    <p><strong>{{ post.caption }}</strong></p>
-    <img>
-</div>
-{% endfor %}
+
+<h2>Posts</h2>
+<!-- Display all the posts here -->
+<section id="post-container">
+    <section id="posts">
+        {% for post in all_posts %}
+        <div id="post">
+            <a href="/post/{{ post.id }}"> <img src="{{ post.photo_url }}" alt="{{ post.caption }}" width="200px"></a> 
+            <p><strong>{{ post.caption }}</strong></p>
+            <img>
+        </div>
+        {% endfor %}
+    </section>
+</section>
+
+<h2>Users</h2>
+
+<p>
+    <a href="/create_user">+ New User</a>
+</p>
+
+<ul>
+    {% for user in all_users %}
+        <li><a href="/profile/{{ user.username }}">{{ user.username }}</a></li>
+    {% endfor %}
+</ul>
+
+
 
 {% endblock %}

@@ -1,0 +1,20 @@
+#story-container {
+    display: flex;
+    justify-content: center;
+}
+
+#stories {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 10px;
+}
+
+#story {
+    margin: 15px;
+}
+
+#story-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; 
+}

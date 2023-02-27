@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
-from only_pets.models import User
+
+from only_pets.models import *
 from only_pets.auth.forms import SignUpForm, LoginForm
 
 # Import app and db from events_app package so that we can run app
@@ -14,8 +15,6 @@ def signup():
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(
-            name = form.name.data,
-            email = form.email.data,
             username=form.username.data,
             password=hashed_password
         )
@@ -24,6 +23,7 @@ def signup():
         flash('Account Created.')
         return redirect(url_for('auth.login'))
     return render_template('signup.html', form=form)
+
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -35,8 +35,8 @@ def login():
         return redirect(next_page if next_page else url_for('main.homepage'))
     return render_template('login.html', form=form)
 
-
 @auth.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('main.homepage'))

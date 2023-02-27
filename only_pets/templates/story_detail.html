@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Your current story</h1>
+
+<p><img src="{{ story.photo_url }}" width="250px" height="250px"></p>
+<p><strong>Created by: </strong>{{ story.created_by.username }}</p>
+
+<form method="POST" action="{{ url_for('main.delete_story', story_id=story.id) }}">
+    {{ form.csrf_token }}
+    <button type="submit">Delete Story</button> 
+</form>
+
+
+<h2>Edit Story</h2>
+
+<form method="POST" action="{{ url_for('main.story_detail', story_id=story.id )}}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please update your story</legend>
+        {{ form.photo_url.label }}
+        {{ form.photo_url(placeholder="Enter photo url here:") }}
+       {{ form.submit }}
+    </fieldset>
+   
+</form>
+
+{% endblock %}

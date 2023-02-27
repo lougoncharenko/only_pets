@@ -32,6 +32,6 @@ python3 app.py
 ## ERD Chart
 <div align="center">
 
-<img width="911" alt="ERD chart" src="only_pets.png">
+<img width="911" alt="ERD chart" src="assets/only_pets.png">
 
 </div>

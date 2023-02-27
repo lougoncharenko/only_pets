@@ -1,0 +1,14 @@
+#post-container {
+    display: flex;
+    justify-content: center;
+}
+
+#posts {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+#post {
+    margin: 15px;
+}

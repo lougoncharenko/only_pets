@@ -1,31 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Posted on {{ post.date_posted}}</h1>
+<h1>{{post.title}}</h1>
 
 <p><img src="{{ post.photo_url }}" width="250px" height="250px"></p>
 
 <p>{{ post.caption }}</p>
 <p><strong>Created by: </strong>{{ post.created_by.username }}</p>
 
-{% for comments in post.all_comments %}
-<p>{{ comments.comment }}</p>
-{% endfor %}
-
-
-<form method="POST" action="{{ url_for('main.add_comment', post_id=postt.id) }}">
+<!-- TODO Add post-comments -->
+<form method="POST" action="{{ url_for('main.delete_post', post_id=post.id) }}">
     {{ form.csrf_token }}
-    <button type="submit">Add a Comment</button>
+    <button type="submit">Delete Post</button> 
+</form>
 
+<!-- <form method="POST" action="{{ url_for('main.add_comment', post_id=post.id) }}">
+    {{ form.csrf_token }}
+    <button type="submit">Add a Comment</button> 
+</form> -->
 
 <h2>Edit Post</h2>
 
-<form method="POST" action="{{ url_for('main.post_detail', post_id=post.id) }}">
+<form method="POST" action="{{ url_for('main.post_detail', post_id=post.id )}}">
     {{ form.csrf_token }}
     <fieldset>
         <legend>Please update your item</legend>
-        {{ form.date_posted.label }}
-        {{ form.date_posted(placeholder="YYYY-MM-DD") }}
+        {{ form.title.label }}
+        {{ form.title(placeholder="YYYY-MM-DD") }}
 
         {{ form.caption.label }}
         {{ form.caption(placeholder="Type your caption here:") }}

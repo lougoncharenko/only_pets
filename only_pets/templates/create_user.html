@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>New User</h1>
+
+<form method="POST" action="{{ url_for('main.create_user') }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Create a user</legend>
+        
+        {{ form.username.label }}
+        {{ form.username(placeholder="Enter username here: ") }}
+
+        {{ form.password.label }}
+        {{ form.password(placeholder="************* ") }}
+      
+       {{ form.submit }}
+
+    </fieldset>
+</form>
+
+
+{% endblock %}
