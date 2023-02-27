@@ -9,7 +9,7 @@ from only_pets.models import User
 
 """
 Run these tests with the command:
-python -m unittest books_app.main.tests
+python -m unittest only_pets.main.tests
 """
 
 #################################################
